@@ -25,6 +25,8 @@ public abstract class Operator {
         operators.put("*", new MultiplyOperator());
         operators.put("/", new DivideOperator());
         operators.put("^", new PowerOperator());
+        operators.put("(", new LeftParenthesesOperator());
+        operators.put(")", new RightParenthesesOperator());
     }
     /**
      * retrieve the priority of an Operator
@@ -60,6 +62,11 @@ public abstract class Operator {
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        return operators.containsKey(token);
+        if (operators.containsKey(token)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

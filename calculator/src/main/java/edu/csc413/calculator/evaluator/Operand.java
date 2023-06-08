@@ -10,7 +10,12 @@ public class Operand {
      * construct operand from string token.
      */
     public Operand(String token) {
-        this.value = Integer.parseInt(token);
+        try {
+            this.value = Integer.parseInt(token);
+        } catch (NumberFormatException e) {
+            System.out.println("parseInt: NumberFormatException");
+            System.exit(1);
+        }
     }
 
     /**
@@ -34,9 +39,9 @@ public class Operand {
     public static boolean check(String token) {
         try {
             Integer.parseInt(token);
-            return true;
         } catch (NumberFormatException e) {
             return false;
         }
+        return true;
     }
 }

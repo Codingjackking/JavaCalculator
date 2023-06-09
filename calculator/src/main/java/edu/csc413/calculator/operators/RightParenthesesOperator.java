@@ -10,6 +10,6 @@ public class RightParenthesesOperator extends Operator {
 
     @Override
     public Operand execute(Operand operandOne, Operand operandTwo) {
-        return null;
+        throw new UnsupportedOperationException("Parenthesis operator does not support execute operation.");
     }
 }

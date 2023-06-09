@@ -81,43 +81,26 @@ public class EvaluatorUI extends JFrame implements ActionListener {
 
         switch (buttonText) {
             case "=":
-                try {
                     Evaluator evaluator = new Evaluator();
-                    int result = evaluator.evaluateExpression(expression);
-                    expressionTextField.setText(Integer.toString(result));
-                } catch (InvalidTokenException e) {
-                    expressionTextField.setText("Invalid Expression");
-                }
+                    if (!expression.isEmpty()) {
+                        try {
+                            expressionTextField.setText(Integer.toString(evaluator.evaluateExpression(expression)));
+                        } catch (InvalidTokenException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 break;
             case "C":
                 expressionTextField.setText("");
                 break;
             case "CE":
                 if (!expression.isEmpty()) {
-                    expression = removeLastToken(expression);
-                    expressionTextField.setText(expression);
+                    expressionTextField.setText(expression.substring(0, expression.length()-1));
                 }
                 break;
             default:
-                expressionTextField.setText(expressionTextField.getText() + buttonText);
+                expressionTextField.setText(expression + buttonText);
                 break;
         }
-    }
-
-    private String removeLastToken(String expression) {
-        expression = expression.trim();
-        if (!expression.isEmpty()) {
-            if (expression.charAt(expression.length() -1) == ' ') {
-                expression = expression.substring(0, expression.length() - 1);
-            } else {
-                int lastSpaceIndex = expression.lastIndexOf(' ');
-                if (lastSpaceIndex != -1) {
-                    expression = expression.substring(0, lastSpaceIndex + 1);
-                } else {
-                    expression = "";
-                }
-            }
-        }
-        return expression;
     }
 }

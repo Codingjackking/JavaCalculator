@@ -81,24 +81,30 @@ public class EvaluatorUI extends JFrame implements ActionListener {
 
         switch (buttonText) {
             case "=":
+                //Evaluate the current expression in the text field.
                     Evaluator evaluator = new Evaluator();
                     if (!expression.isEmpty()) {
                         try {
                             expressionTextField.setText(Integer.toString(evaluator.evaluateExpression(expression)));
                         } catch (InvalidTokenException e) {
+                            //If the expression is invalid, clear the text field and print the stack trace.
+                            expressionTextField.setText("");
                             e.printStackTrace();
                         }
                     }
                 break;
             case "C":
+                //Clear the expression text field.
                 expressionTextField.setText("");
                 break;
             case "CE":
+                //Remove the last character in the expression text field, if it's not empty.
                 if (!expression.isEmpty()) {
                     expressionTextField.setText(expression.substring(0, expression.length()-1));
                 }
                 break;
             default:
+                //Append the clicked button's text to the expression text field.
                 expressionTextField.setText(expression + buttonText);
                 break;
         }

@@ -17,7 +17,7 @@ public abstract class Operator {
     // operators.put( "+", new AdditionOperator() );
     // operators.put( "-", new SubtractionOperator() );
 
-    public static Map<String,Operator> operators;
+    private static Map<String,Operator> operators;
     static {
         operators = new HashMap<>();
         operators.put("+", new AddOperator());
